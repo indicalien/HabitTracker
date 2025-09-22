@@ -26,18 +26,20 @@ struct ContentView: View {
     var body: some View {
         HStack {
             
-            Text("Habits").bold().frame(maxWidth: .infinity, alignment: .leading)
-            Text("Date Added").bold().frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .foregroundColor(Color.green)
-        .padding(.horizontal)
-        .padding(.vertical)
-        Divider()
-        
-        List(habits) { habit in
-            HStack {
-                Text(habit.Entry)
-                Text(dateFormatter.string(from: habit.date))
+            Table(habits) {
+                TableColumn("Habit") { habit in
+                    Text(habit.Entry)
+                        .font(.title3)
+                        .foregroundColor(.green)
+                }
+                
+                TableColumn("Date") { habit in
+                    Text(dateFormatter.string(from: habit.date))
+                        .font(.title3)
+                        .foregroundColor(.green)
+                        
+                }
+                
             }
         }
     
@@ -50,23 +52,22 @@ struct ContentView: View {
             Button("Add"){
                 addHabit()
             }
-            .cornerRadius(10)
             .background(Color.blue)
             .foregroundColor(Color.black)
+            .cornerRadius(10)
             
             Button("Load"){
                 loadHabits()
             }
-            .cornerRadius(10)
             .background(Color.yellow)
             .foregroundColor(Color.black)
-            
+            .cornerRadius(10)
             Button("Save"){
                 saveHabits()
             }
-            .cornerRadius(10)
             .background(Color.green)
             .foregroundColor(Color.black)
+            .cornerRadius(10)
         }
         .padding()
     }
@@ -76,6 +77,7 @@ struct ContentView: View {
             habits.append(new_Habit)
                     newText = ""
         }
+        
         
         func loadHabits(){
             if let data = UserDefaults.standard.data(forKey: "habits"),

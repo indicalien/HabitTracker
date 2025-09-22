@@ -29,7 +29,7 @@ struct ContentView: View {
             Text("Habits").bold().frame(maxWidth: .infinity, alignment: .leading)
             Text("Date Added").bold().frame(maxWidth: .infinity, alignment: .leading)
         }
-       
+        .foregroundColor(Color.green)
         .padding(.horizontal)
         .padding(.vertical)
         Divider()
@@ -40,6 +40,7 @@ struct ContentView: View {
                 Text(dateFormatter.string(from: habit.date))
             }
         }
+    
         Divider()
         
         HStack {
@@ -49,18 +50,21 @@ struct ContentView: View {
             Button("Add"){
                 addHabit()
             }
+            .cornerRadius(10)
             .background(Color.blue)
             .foregroundColor(Color.black)
             
             Button("Load"){
                 loadHabits()
             }
+            .cornerRadius(10)
             .background(Color.yellow)
             .foregroundColor(Color.black)
             
             Button("Save"){
                 saveHabits()
             }
+            .cornerRadius(10)
             .background(Color.green)
             .foregroundColor(Color.black)
         }
@@ -86,16 +90,12 @@ struct ContentView: View {
             }
         }
         
-        
         var dateFormatter: DateFormatter {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM d yyyy HH:mm:ss"
             return formatter
         }
     }
-
-    
-    
     
 struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
